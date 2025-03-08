@@ -1,4 +1,9 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
+// nuxt.config.ts
 export default defineNuxtConfig({
-  devtools: { enabled: true }
-})
+  modules: [
+    '@pinia/nuxt'
+  ],
+
+  css: ['~/assets/styles/main.scss'],
+  compatibilityDate: '2025-03-09'
+});
