@@ -8,11 +8,21 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "electron:build": "tsc -p electron/tsconfig.json && electron electron-dist/main.js",
+    "electron:dev": "tsc -p electron/tsconfig.json --watch"
   },
   "dependencies": {
-    "nuxt": "^3.10.2",
+    "@pinia/nuxt": "^0.10.1",
+    "nuxt": "^3.16.0",
+    "pinia": "^3.0.1",
     "vue": "^3.4.19",
     "vue-router": "^4.2.5"
+  },
+  "devDependencies": {
+    "electron": "^35.0.0",
+    "electron-builder": "^25.1.8",
+    "sass": "^1.85.1",
+    "ts-node": "^10.9.2"
   }
 }

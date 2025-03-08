@@ -1,7 +1,12 @@
-# Created by .ignore support plugin (hsz.mobi)
-### Node template
+# Nuxt 3 build output
+.nuxt
+output
+
+# Nuxt generate
+dist
+
 # Logs
-/logs
+logs
 *.log
 npm-debug.log*
 yarn-debug.log*
@@ -65,12 +70,6 @@ typings/
 # next.js build output
 .next
 
-# nuxt.js build output
-.nuxt
-
-# Nuxt generate
-dist
-
 # vuepress build output
 .vuepress/dist
 
@@ -79,12 +78,27 @@ dist
 
 # IDE / Editor
 .idea
+.vscode
 
 # Service worker
 sw.*
 
-# macOS
+# Electron build output (if you compile Electron files)
+electron-dist
+
+# OS files
 .DS_Store
+Thumbs.db
 
 # Vim swap files
 *.swp
+
+# Prettier
+.prettierignore
+
+# ESLint
+.eslintignore
+
+# Electron
+electron-builder.yaml
+dist_electron/
