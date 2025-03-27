@@ -2,6 +2,7 @@
   <div>
     <div id="navigation-bar">
       <NuxtLink to="/">Home</NuxtLink>
+      <NuxtLink to="/worlds">Worlds</NuxtLink>
       <NuxtLink to="/input">Data Testing</NuxtLink>
       <NuxtLink to="/characters">Characters</NuxtLink>
       <NuxtLink to="/personalities">Personalities</NuxtLink>

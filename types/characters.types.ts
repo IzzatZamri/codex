@@ -16,6 +16,8 @@ export interface Character {
   enneagramCode?: string
 
   themeColor?: any // Update this
+  theme?: any // update this
+  factions?: any // update this (groups factions etc)
 
   description?: string
   createdAt: string
