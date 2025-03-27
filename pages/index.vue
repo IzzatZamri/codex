@@ -1,35 +1,12 @@
 <template>
   <div>
-    <h1>
-      Despair Codex
-    </h1>
-    <p>
-      Welcome to the Despair Codex. I am Despair (alias). <br>
-      This Page is dedicated for the purpose of documentations, Ideas and Journals.
-    </p>
+    <h1>Despair</h1>
+    <Testing />
 
-    <div>
-      <h2>
-        To Do Lists
-      </h2>
-      <ul>
-        <li>
-          Setup Design for the page
-        </li>
-        <li>
-          Learn how to use figma
-        </li>
-        <li>
-          Learn TypeScript
-        </li>
-        <li>
-          Setup the Component
-        </li>
-        <li>
-          List out what to be documented
-        </li>
-      </ul>
-    </div>
-
+    personality timeline matrix system chatting coordinate
   </div>
 </template>
+
+<script setup lang="ts">
+import Testing from '@/components/testing.vue'
+</script>

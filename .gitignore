@@ -102,3 +102,6 @@ Thumbs.db
 # Electron
 electron-builder.yaml
 dist_electron/
+
+# Databases
+database/
