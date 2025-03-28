@@ -3,7 +3,7 @@ import type { Mbti } from '~/types/personalities.types'
 export const MBTI_TYPES = ref<Mbti[]>([
   {
     name: 'The Protagonist (ENFJ-A)',
-    code: 'enfj-a',
+    code: 'enfja',
     energy: 'Extraversion',
     perception: 'Intuition',
     decision: 'Feeling',
@@ -12,7 +12,7 @@ export const MBTI_TYPES = ref<Mbti[]>([
   },
   {
     name: 'The Protagonist (ENFJ-T)',
-    code: 'enfj-t',
+    code: 'enfjt',
     energy: 'Extraversion',
     perception: 'Intuition',
     decision: 'Feeling',
@@ -21,7 +21,7 @@ export const MBTI_TYPES = ref<Mbti[]>([
   },
   {
     name: 'The Campaigner (ENFP-A)',
-    code: 'enfp-a',
+    code: 'enfpa',
     energy: 'Extraversion',
     perception: 'Intuition',
     decision: 'Feeling',
@@ -30,7 +30,7 @@ export const MBTI_TYPES = ref<Mbti[]>([
   },
   {
     name: 'The Campaigner (ENFP-T)',
-    code: 'enfp-t',
+    code: 'enfpt',
     energy: 'Extraversion',
     perception: 'Intuition',
     decision: 'Feeling',
@@ -39,7 +39,7 @@ export const MBTI_TYPES = ref<Mbti[]>([
   },
   {
     name: 'The Commander (ENTJ-A)',
-    code: 'entj-a',
+    code: 'entja',
     energy: 'Extraversion',
     perception: 'Intuition',
     decision: 'Thinking',
@@ -48,7 +48,7 @@ export const MBTI_TYPES = ref<Mbti[]>([
   },
   {
     name: 'The Commander (ENTJ-T)',
-    code: 'entj-t',
+    code: 'entjt',
     energy: 'Extraversion',
     perception: 'Intuition',
     decision: 'Thinking',
@@ -57,7 +57,7 @@ export const MBTI_TYPES = ref<Mbti[]>([
   },
   {
     name: 'The Debater (ENTP-A)',
-    code: 'entp-a',
+    code: 'entpa',
     energy: 'Extraversion',
     perception: 'Intuition',
     decision: 'Thinking',
@@ -66,7 +66,7 @@ export const MBTI_TYPES = ref<Mbti[]>([
   },
   {
     name: 'The Debater (ENTP-T)',
-    code: 'entp-t',
+    code: 'entpt',
     energy: 'Extraversion',
     perception: 'Intuition',
     decision: 'Thinking',
@@ -75,7 +75,7 @@ export const MBTI_TYPES = ref<Mbti[]>([
   },
   {
     name: 'The Entertainer (ESFP-A)',
-    code: 'esfp-a',
+    code: 'esfpa',
     energy: 'Extraversion',
     perception: 'Sensing',
     decision: 'Feeling',
@@ -84,7 +84,7 @@ export const MBTI_TYPES = ref<Mbti[]>([
   },
   {
     name: 'The Entertainer (ESFP-T)',
-    code: 'esfp-t',
+    code: 'esfpt',
     energy: 'Extraversion',
     perception: 'Sensing',
     decision: 'Feeling',
@@ -93,7 +93,7 @@ export const MBTI_TYPES = ref<Mbti[]>([
   },
   {
     name: 'The Consul (ESFJ-A)',
-    code: 'esfj-a',
+    code: 'esfja',
     energy: 'Extraversion',
     perception: 'Sensing',
     decision: 'Feeling',
@@ -102,7 +102,7 @@ export const MBTI_TYPES = ref<Mbti[]>([
   },
   {
     name: 'The Consul (ESFJ-T)',
-    code: 'esfj-t',
+    code: 'esfjt',
     energy: 'Extraversion',
     perception: 'Sensing',
     decision: 'Feeling',
@@ -111,7 +111,7 @@ export const MBTI_TYPES = ref<Mbti[]>([
   },
   {
     name: 'The Executive (ESTJ-A)',
-    code: 'estj-a',
+    code: 'estja',
     energy: 'Extraversion',
     perception: 'Sensing',
     decision: 'Thinking',
@@ -120,7 +120,7 @@ export const MBTI_TYPES = ref<Mbti[]>([
   },
   {
     name: 'The Executive (ESTJ-T)',
-    code: 'estj-t',
+    code: 'estjt',
     energy: 'Extraversion',
     perception: 'Sensing',
     decision: 'Thinking',
@@ -129,7 +129,7 @@ export const MBTI_TYPES = ref<Mbti[]>([
   },
   {
     name: 'The Entrepreneur (ESTP-A)',
-    code: 'estp-a',
+    code: 'estpa',
     energy: 'Extraversion',
     perception: 'Sensing',
     decision: 'Thinking',
@@ -138,7 +138,7 @@ export const MBTI_TYPES = ref<Mbti[]>([
   },
   {
     name: 'The Entrepreneur (ESTP-T)',
-    code: 'estp-t',
+    code: 'estpt',
     energy: 'Extraversion',
     perception: 'Sensing',
     decision: 'Thinking',
@@ -147,7 +147,7 @@ export const MBTI_TYPES = ref<Mbti[]>([
   },
   {
     name: 'The Advocate (INFJ-A)',
-    code: 'infj-a',
+    code: 'infja',
     energy: 'Introversion',
     perception: 'Intuition',
     decision: 'Feeling',
@@ -156,7 +156,7 @@ export const MBTI_TYPES = ref<Mbti[]>([
   },
   {
     name: 'The Advocate (INFJ-T)',
-    code: 'infj-t',
+    code: 'infjt',
     energy: 'Introversion',
     perception: 'Intuition',
     decision: 'Feeling',
@@ -165,7 +165,7 @@ export const MBTI_TYPES = ref<Mbti[]>([
   },
   {
     name: 'The Mediator (INFP-A)',
-    code: 'infp-a',
+    code: 'infpa',
     energy: 'Introversion',
     perception: 'Intuition',
     decision: 'Feeling',
@@ -174,7 +174,7 @@ export const MBTI_TYPES = ref<Mbti[]>([
   },
   {
     name: 'The Mediator (INFP-T)',
-    code: 'infp-t',
+    code: 'infpt',
     energy: 'Introversion',
     perception: 'Intuition',
     decision: 'Feeling',
@@ -183,7 +183,7 @@ export const MBTI_TYPES = ref<Mbti[]>([
   },
   {
     name: 'The Architect (INTJ-A)',
-    code: 'intj-a',
+    code: 'intja',
     energy: 'Introversion',
     perception: 'Intuition',
     decision: 'Thinking',
@@ -192,7 +192,7 @@ export const MBTI_TYPES = ref<Mbti[]>([
   },
   {
     name: 'The Architect (INTJ-T)',
-    code: 'intj-t',
+    code: 'intjt',
     energy: 'Introversion',
     perception: 'Intuition',
     decision: 'Thinking',
@@ -201,7 +201,7 @@ export const MBTI_TYPES = ref<Mbti[]>([
   },
   {
     name: 'The Logician (INTP-A)',
-    code: 'intp-a',
+    code: 'intpa',
     energy: 'Introversion',
     perception: 'Intuition',
     decision: 'Thinking',
@@ -210,7 +210,7 @@ export const MBTI_TYPES = ref<Mbti[]>([
   },
   {
     name: 'The Logician (INTP-T)',
-    code: 'intp-t',
+    code: 'intpt',
     energy: 'Introversion',
     perception: 'Intuition',
     decision: 'Thinking',
@@ -219,7 +219,7 @@ export const MBTI_TYPES = ref<Mbti[]>([
   },
   {
     name: 'The Defender (ISFJ-A)',
-    code: 'isfj-a',
+    code: 'isfja',
     energy: 'Introversion',
     perception: 'Sensing',
     decision: 'Feeling',
@@ -228,7 +228,7 @@ export const MBTI_TYPES = ref<Mbti[]>([
   },
   {
     name: 'The Defender (ISFJ-T)',
-    code: 'isfj-t',
+    code: 'isfjt',
     energy: 'Introversion',
     perception: 'Sensing',
     decision: 'Feeling',
@@ -237,7 +237,7 @@ export const MBTI_TYPES = ref<Mbti[]>([
   },
   {
     name: 'The Adventurer (ISFP-A)',
-    code: 'isfp-a',
+    code: 'isfpa',
     energy: 'Introversion',
     perception: 'Sensing',
     decision: 'Feeling',
@@ -246,7 +246,7 @@ export const MBTI_TYPES = ref<Mbti[]>([
   },
   {
     name: 'The Adventurer (ISFP-T)',
-    code: 'isfp-t',
+    code: 'isfpt',
     energy: 'Introversion',
     perception: 'Sensing',
     decision: 'Feeling',
@@ -255,7 +255,7 @@ export const MBTI_TYPES = ref<Mbti[]>([
   },
   {
     name: 'The Logistician (ISTJ-A)',
-    code: 'istj-a',
+    code: 'istja',
     energy: 'Introversion',
     perception: 'Sensing',
     decision: 'Thinking',
@@ -264,7 +264,7 @@ export const MBTI_TYPES = ref<Mbti[]>([
   },
   {
     name: 'The Logistician (ISTJ-T)',
-    code: 'istj-t',
+    code: 'istjt',
     energy: 'Introversion',
     perception: 'Sensing',
     decision: 'Thinking',
@@ -273,7 +273,7 @@ export const MBTI_TYPES = ref<Mbti[]>([
   },
   {
     name: 'The Virtuoso (ISTP-A)',
-    code: 'istp-a',
+    code: 'istpa',
     energy: 'Introversion',
     perception: 'Sensing',
     decision: 'Thinking',
@@ -282,7 +282,7 @@ export const MBTI_TYPES = ref<Mbti[]>([
   },
   {
     name: 'The Virtuoso (ISTP-T)',
-    code: 'istp-t',
+    code: 'istpt',
     energy: 'Introversion',
     perception: 'Sensing',
     decision: 'Thinking',

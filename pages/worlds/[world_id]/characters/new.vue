@@ -9,17 +9,41 @@
       </option>
     </select>
 
+    X:{{ personalityCode }}
+
     <!-- Use the PersonalityDisplay component and pass the selected type -->
-    <PersonalityDisplay :selectedType="selectedType" />
+    <PersonalityDisplay
+      v-model:personalityCode="personalityCode"
+      :selectedType="selectedType"
+    />
+
+    <div class="page">
+      <h1>Upload an Image</h1>
+      <ImageUploader @upload-success="handleUploadSuccess" />
+      <div v-if="uploadedImage">
+        <h2>Uploaded Image Data</h2>
+        <pre>{{ uploadedImage }}</pre>
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import ImageUploader from '~/components/common/fileUploader.vue'
+
+const uploadedImage = ref(null)
+
+const handleUploadSuccess = (imageData: any) => {
+  uploadedImage.value = imageData
+  console.log('Image uploaded:', imageData)
+}
+
 import PersonalityDisplay from '@/components/ui/personality.vue' // Adjust path as needed
 
 // Create a reactive variable for the selected Enneagram type (as a string)
 const selectedType = ref('1')
+const personalityCode = ref('')
 
 // List of possible types (as strings)
 const enneagramTypes = ['1', '2', '3', '4', '5', '6', '7', '8', '9']

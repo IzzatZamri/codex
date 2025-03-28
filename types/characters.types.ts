@@ -18,6 +18,7 @@ export interface Character {
   themeColor?: any // Update this
   theme?: any // update this
   factions?: any // update this (groups factions etc)
+  traits?: any // ambidexterous etc
 
   description?: string
   createdAt: string
