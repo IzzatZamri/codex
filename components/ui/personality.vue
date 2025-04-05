@@ -1,8 +1,5 @@
 <template>
   <div class="personality-wrapper">
-    <pre>
-      {{ { localAlignment, localMbti, localEnneagram } }}
-    </pre>
     <svg :width="size" :height="size" :viewBox="`0 0 ${size} ${size}`">
       <!-- Define arc paths in <defs> so text can follow the curves -->
       <defs>
@@ -75,7 +72,7 @@
         :x2="lineWings?.dotB?.x"
         :y2="lineWings?.dotB?.y"
         stroke="black"
-        stroke-width="2"
+        stroke-width="4"
       />
 
       <!-- Dots for each Enneagram type -->
@@ -86,9 +83,19 @@
           :cx="dot.x"
           :cy="dot.y"
           :r="
-            dot.type === selectedMainEnneagram ? selectedDotRadius : dotRadius
+            dot.type === selectedMainEnneagram
+              ? selectedDotRadius
+              : dot.type === selectedWingEnneagram
+              ? selectedDotRadius * 0.75
+              : dotRadius
           "
-          :fill="dot.type === selectedMainEnneagram ? 'black' : 'gray'"
+          :fill="
+            dot.type === selectedMainEnneagram
+              ? 'black'
+              : dot.type === selectedWingEnneagram
+              ? 'gray'
+              : 'lightgray'
+          "
           @click="onSelectEnneagram(dot.type)"
         />
         <!-- Text labels for each dot -->
@@ -106,17 +113,6 @@
         </text>
       </g>
 
-      <!-- Outer highlight circle around the selected dot -->
-      <circle
-        v-if="selectedDot"
-        :cx="selectedDot.x"
-        :cy="selectedDot.y"
-        :r="selectedDotHighlightRadius"
-        stroke="black"
-        stroke-width="2"
-        fill="none"
-      />
-
       <!-- 3x3 grid of squares at the center -->
       <g>
         <rect
@@ -132,6 +128,36 @@
           stroke-width="2"
         ></rect>
       </g>
+
+      <!-- so sp sx -->
+      <circle
+        :cx="center.x - (boxSize + boxGap)"
+        :cy="center.y + 2.5 * (boxSize + boxGap)"
+        :r="boxSize / 2"
+        :stroke="localEnneagram.variant === 'so' ? 'black' : 'lightgray'"
+        stroke-width="2"
+        :fill="localEnneagram.variant === 'so' ? 'lightgray' : 'white'"
+        @click="onSelectEnneagramVariant('so')"
+      ></circle>
+      <circle
+        :cx="center.x"
+        :cy="center.y + 3 * (boxSize + boxGap)"
+        :r="boxSize / 2"
+        :stroke="localEnneagram.variant === 'sp' ? 'black' : 'lightgray'"
+        stroke-width="2"
+        :fill="localEnneagram.variant === 'sp' ? 'lightgray' : 'white'"
+        @click="onSelectEnneagramVariant('sp')"
+      ></circle>
+
+      <circle
+        :cx="center.x + (boxSize + boxGap)"
+        :cy="center.y + 2.5 * (boxSize + boxGap)"
+        :r="boxSize / 2"
+        :stroke="localEnneagram.variant === 'sx' ? 'black' : 'lightgray'"
+        stroke-width="2"
+        :fill="localEnneagram.variant === 'sx' ? 'lightgray' : 'white'"
+        @click="onSelectEnneagramVariant('sx')"
+      ></circle>
     </svg>
 
     <div class="mbti-wrapper" :style="{ width: `${size}px` }">
@@ -181,21 +207,11 @@
         />
       </div>
     </div>
-
-    <div class="selected-type-label">Selected Type: {{ selectedType }}</div>
   </div>
 </template>
 
 <script setup lang="ts">
-import {
-  ref,
-  reactive,
-  computed,
-  defineProps,
-  defineEmits,
-  onMounted,
-  watch,
-} from 'vue'
+import { ref, reactive, computed, onMounted, watch } from 'vue'
 import CustomSlider from '~/components/common/slider.vue'
 import {
   parseAlignmentCode,
@@ -212,7 +228,6 @@ import type {
 // Props
 const props = defineProps<{
   personalityCode: string
-  selectedType: string
 }>()
 
 // Emit event for updating personality code
@@ -247,7 +262,6 @@ watch(
     }
     const newCode = stringifyPersonality(personality)
     if (newCode !== props.personalityCode) {
-      console.log('Emitting new personality code:', newCode)
       emit('update:personalityCode', newCode)
     }
   },
@@ -298,6 +312,10 @@ const selectedMainEnneagram = computed(() =>
   parseInt(localEnneagram.value.main || '', 10)
 )
 
+const selectedWingEnneagram = computed(() =>
+  parseInt(localEnneagram.value.wing || '', 10)
+)
+
 // Alignment sections and functions
 const alignmentIndex = [
   'lg',
@@ -345,6 +363,14 @@ const onSelectEnneagram = (val: number) => {
     }
   }
 }
+const onSelectEnneagramVariant = (val: string) => {
+  const current = localEnneagram.value
+  if (current.variant === val) {
+    localEnneagram.value = { ...current, variant: `` }
+  } else {
+    localEnneagram.value = { ...current, variant: `${val}` }
+  }
+}
 
 /* --- Layout and SVG Helpers --- */
 const size = 280
@@ -352,9 +378,8 @@ const boxSize = 10
 const boxGap = 15
 const center = { x: size / 2, y: size / 2 }
 const outerRadius = 100
-const dotRadius = 5
-const selectedDotRadius = 8
-const selectedDotHighlightRadius = 14
+const dotRadius = 10
+const selectedDotRadius = 20
 
 // Outer sections for arcs (colors will be set on mounted)
 const outerSections = ref([

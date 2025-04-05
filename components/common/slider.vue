@@ -14,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, defineProps, defineEmits } from 'vue'
+import { computed, defineEmits } from 'vue'
 
 const props = defineProps({
   modelValue: { type: Number, required: true },

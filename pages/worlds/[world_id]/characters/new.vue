@@ -1,21 +1,20 @@
 <template>
   <div>
     <h1>Enneagram Display Example</h1>
-    <!-- A dropdown to select an Enneagram type -->
-    <label for="enneagram-select">Select Enneagram Type:</label>
-    <select id="enneagram-select" v-model="selectedType">
-      <option v-for="type in enneagramTypes" :key="type" :value="type">
-        {{ type }}
-      </option>
-    </select>
-
-    X:{{ personalityCode }}
-
     <!-- Use the PersonalityDisplay component and pass the selected type -->
-    <PersonalityDisplay
-      v-model:personalityCode="personalityCode"
-      :selectedType="selectedType"
-    />
+    <PersonalityDisplay v-model:personalityCode="personalityCode" />
+
+    <div>
+      <div v-if="personality.alignment.name.length > 7">
+        {{ personality.alignment.name }}
+      </div>
+      <div v-if="personality.enneagram.name.length > 7">
+        {{ personality.enneagram.name }}
+      </div>
+      <div v-if="personality.mbti.name.length > 7">
+        {{ personality.mbti.name }}
+      </div>
+    </div>
 
     <div class="page">
       <h1>Upload an Image</h1>
@@ -29,11 +28,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import ImageUploader from '~/components/common/fileUploader.vue'
+import { parsePersonalityString } from '~/composables/usePersonalityParser'
 
 const uploadedImage = ref(null)
-
 const handleUploadSuccess = (imageData: any) => {
   uploadedImage.value = imageData
   console.log('Image uploaded:', imageData)
@@ -42,8 +41,10 @@ const handleUploadSuccess = (imageData: any) => {
 import PersonalityDisplay from '@/components/ui/personality.vue' // Adjust path as needed
 
 // Create a reactive variable for the selected Enneagram type (as a string)
-const selectedType = ref('1')
 const personalityCode = ref('')
+const personality = computed(() => {
+  return parsePersonalityString(personalityCode.value)
+})
 
 // List of possible types (as strings)
 const enneagramTypes = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
