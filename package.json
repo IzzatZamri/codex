@@ -24,12 +24,14 @@
     "markdown-it": "^14.1.0",
     "nuxt": "^3.16.0",
     "pinia": "^3.0.1",
+    "uuid": "^11.1.0",
     "vue": "^3.4.19",
     "vue-router": "^4.2.5"
   },
   "devDependencies": {
     "@types/markdown-it": "^14.1.2",
     "@types/node": "^22.13.10",
+    "@types/uuid": "^10.0.0",
     "electron": "^35.0.0",
     "electron-builder": "^25.1.8",
     "sass": "^1.85.1",

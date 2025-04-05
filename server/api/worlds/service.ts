@@ -34,6 +34,16 @@ export async function getById(id: string): Promise<World | null> {
 }
 
 /**
+ * Get a single world by slug.
+ * @param slug - Unique slug of the world.
+ * @returns The world if found, otherwise null.
+ */
+export async function getBySlug(slug: string): Promise<World | null> {
+  await db.read()
+  return db.data.worlds.find((x) => x.slug === slug) || null
+}
+
+/**
  * Create a new world and add it to the database.
  * @param data - world data (excluding ID, createdAt, updatedAt).
  * @returns The created world.
@@ -74,7 +84,7 @@ export async function update(
   await db.read()
   const index = db.data.worlds.findIndex((x) => x.id === id)
 
-  if (index === -1) throw new Error('data not found')
+  if (index === -1) throw new Error('Data not found')
 
   db.data.worlds[index] = {
     ...db.data.worlds[index],
@@ -87,7 +97,7 @@ export async function update(
 }
 
 /**
- * Delete an world by ID.
+ * Delete a world by ID.
  * @param id - Unique ID of the world.
  * @returns True if deleted, otherwise false.
  */
