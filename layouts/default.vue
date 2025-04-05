@@ -2,12 +2,12 @@
   <div>
     <div id="navigation-bar">
       <NuxtLink to="/">Home</NuxtLink>
+      <NuxtLink to="/journal">Journal </NuxtLink>
       <NuxtLink to="/worlds">Worlds</NuxtLink>
       <NuxtLink to="/input">Data Testing</NuxtLink>
       <NuxtLink to="/characters">Characters</NuxtLink>
       <NuxtLink to="/personalities">Personalities</NuxtLink>
       <NuxtLink to="/timeline">Timeline</NuxtLink>
-      <NuxtLink to="/testing">Testing Layouts</NuxtLink>
     </div>
     <main>
       <NuxtPage />
