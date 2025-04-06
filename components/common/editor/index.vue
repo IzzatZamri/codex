@@ -25,13 +25,17 @@ import { ref, computed, watch } from 'vue'
 import MarkdownIt from 'markdown-it'
 // Import our custom plugin
 import randomNumberPlugin from './plugins/randomNumber'
+import conversationPlugin from './plugins/conversation'
 
 // Initialize MarkdownIt with settings and use the custom plugin
 const md = new MarkdownIt({
   html: true,
   linkify: true,
   typographer: true,
-}).use(randomNumberPlugin)
+})
+
+md.use(randomNumberPlugin)
+md.use(conversationPlugin) // Use the conversation plugin
 
 // Define props and emit functions
 const props = defineProps<{
@@ -89,8 +93,7 @@ const editMode = computed(() => props.editMode)
   .editor {
     textarea {
       width: 100%;
-      min-height: 300px;
-      padding: 10px;
+      padding: 0px;
       font-size: 1em;
       font-family: monospace;
       border: none;
@@ -106,8 +109,7 @@ const editMode = computed(() => props.editMode)
     }
   }
   .preview {
-    padding: 10px;
-    min-height: 300px;
+    padding: 0px;
     font-size: 1em;
     font-family: monospace;
 

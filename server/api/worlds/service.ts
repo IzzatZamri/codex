@@ -10,17 +10,17 @@ import { World } from '~/types/worlds.types'
  */
 export async function get(search?: string): Promise<World[]> {
   await db.read()
-  let world = db.data.worlds
+  let res = db.data.worlds
 
   if (search) {
-    const fuse = new Fuse(world, {
+    const fuse = new Fuse(res, {
       keys: ['name', 'description'],
       threshold: 0.3,
     })
-    world = fuse.search(search.toString()).map((result) => result.item)
+    res = fuse.search(search.toString()).map((result) => result.item)
   }
 
-  return world
+  return res
 }
 
 /**

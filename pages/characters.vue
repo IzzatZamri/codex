@@ -94,7 +94,6 @@
 
       <div style="width: 100%">
         <h1>Characters</h1>
-        <Testing />
 
         personality timeline matrix system chatting coordinate
       </div>
@@ -102,9 +101,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
-import Testing from '@/components/testing.vue'
-</script>
+<script setup lang="ts"></script>
 
 <style lang="scss" scope>
 .profile-picture {

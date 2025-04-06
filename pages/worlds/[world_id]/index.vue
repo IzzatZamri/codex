@@ -1,7 +1,14 @@
 <template>
   <div>
     <h1>{{ world?.name || 'World Not Found' }}</h1>
-    <pre>{{ world }}</pre>
+    <div v-if="world !== null">
+      <MarkdownEditor
+        v-model="world.description"
+        :editMode="isEditMode"
+        :showToolbar="false"
+        @update:editMode="isEditMode = $event"
+      />
+    </div>
 
     <ul v-if="world">
       <li>
@@ -25,9 +32,11 @@
 import { useRoute } from 'vue-router'
 import { ref, onMounted } from 'vue'
 import type { World } from '@/types/worlds.types'
+import MarkdownEditor from '@/components/common/editor/index.vue' // Adjust path as needed
 
 const route = useRoute()
 const world = ref<World | null>(null)
+const isEditMode = ref(false)
 
 const {
   public: { apiBase },

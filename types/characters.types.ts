@@ -20,6 +20,7 @@ export interface Character {
   factions?: any // update this (groups factions etc)
   traits?: any // ambidexterous etc
 
+  worldId?: string
   description?: string
   createdAt: string
   updatedAt: string

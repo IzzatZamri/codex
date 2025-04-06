@@ -9,6 +9,7 @@
       <MarkdownEditor
         v-model="description"
         :editMode="isEditMode"
+        :showToolbar="true"
         @update:editMode="isEditMode = $event"
       />
     </div>

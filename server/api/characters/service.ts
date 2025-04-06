@@ -3,24 +3,38 @@ import { randomUUID } from 'crypto'
 import Fuse from 'fuse.js'
 import { Character } from '~/types/characters.types'
 
-/**
- * Get all characters, with optional search functionality.
- * @param search (optional) - Search query for filtering characters.
- * @returns List of characters (filtered if search is provided).
- */
-export async function getCharacters(search?: string): Promise<Character[]> {
-  await db.read()
-  let characters = db.data.characters
+interface CharacterFilters {
+  search?: string
+  worldId?: string
+  // Add more filter options here in the future
+}
 
-  if (search) {
-    const fuse = new Fuse(characters, {
+/**
+ * Get all characters, with optional filters.
+ * @param filters (optional) - Object containing filtering options.
+ * @returns List of characters (filtered if options are provided).
+ */
+export async function get(
+  filters: CharacterFilters = {}
+): Promise<Character[]> {
+  await db.read()
+  let res = db.data.characters
+
+  // Apply worldId filter (if provided)
+  if (filters.worldId) {
+    res = res.filter((x) => x.worldId === filters.worldId)
+  }
+
+  // Apply search filter using Fuse.js if search term is provided
+  if (filters.search) {
+    const fuse = new Fuse(res, {
       keys: ['name', 'fullName', 'nickName', 'description'],
       threshold: 0.3,
     })
-    characters = fuse.search(search.toString()).map((result) => result.item)
+    res = fuse.search(filters.search).map((result) => result.item)
   }
 
-  return characters
+  return res
 }
 
 /**
@@ -28,56 +42,56 @@ export async function getCharacters(search?: string): Promise<Character[]> {
  * @param id - Unique ID of the character.
  * @returns The character if found, otherwise null.
  */
-export async function getCharacterById(id: string): Promise<Character | null> {
+export async function getById(id: string): Promise<Character | null> {
   await db.read()
-  return db.data.characters.find((character) => character.id === id) || null
+  return db.data.characters.find((x) => x.id === id) || null
 }
 
 /**
  * Create a new character and add it to the database.
- * @param newCharacter - Character data (excluding ID, createdAt, updatedAt).
+ * @param data - Character data (excluding ID, createdAt, updatedAt).
  * @returns The created character.
  */
-export async function createCharacter(
-  newCharacter: Omit<Character, 'id' | 'createdAt' | 'updatedAt'>
+export async function create(
+  data: Omit<Character, 'id' | 'createdAt' | 'updatedAt'>
 ): Promise<Character> {
   await db.read()
 
-  if (!newCharacter.name) throw new Error('Name is required')
+  if (!data.name) throw new Error('Name is required')
 
-  const character: Character = {
+  const payload: Character = {
     id: randomUUID(),
-    name: newCharacter.name,
-    description: newCharacter.description || '',
+    name: data.name,
+    description: data.description || '',
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
-    // add other character fields if needed
+    // Ensure that a type field is added if needed, e.g., type: data.type || 'default'
   }
 
-  db.data.characters.push(character)
+  db.data.characters.push(payload)
   await db.write()
 
-  return character
+  return payload
 }
 
 /**
  * Update an existing character by ID.
  * @param id - Unique ID of the character.
- * @param updatedData - Fields to update.
+ * @param data - Fields to update.
  * @returns The updated character.
  */
-export async function updateCharacter(
+export async function update(
   id: string,
-  updatedData: Partial<Omit<Character, 'id' | 'createdAt'>>
+  data: Partial<Omit<Character, 'id' | 'createdAt'>>
 ): Promise<Character> {
   await db.read()
-  const index = db.data.characters.findIndex((character) => character.id === id)
+  const index = db.data.characters.findIndex((x) => x.id === id)
 
   if (index === -1) throw new Error('Character not found')
 
   db.data.characters[index] = {
     ...db.data.characters[index],
-    ...updatedData,
+    ...data,
     updatedAt: new Date().toISOString(),
   }
   await db.write()
@@ -90,9 +104,9 @@ export async function updateCharacter(
  * @param id - Unique ID of the character.
  * @returns True if deleted, otherwise false.
  */
-export async function deleteCharacter(id: string): Promise<boolean> {
+export async function remove(id: string): Promise<boolean> {
   await db.read()
-  const index = db.data.characters.findIndex((character) => character.id === id)
+  const index = db.data.characters.findIndex((x) => x.id === id)
 
   if (index === -1) throw new Error('Character not found')
 

@@ -4,10 +4,8 @@
       <NuxtLink to="/">Home</NuxtLink>
       <NuxtLink to="/journal">Journal </NuxtLink>
       <NuxtLink to="/worlds">Worlds</NuxtLink>
-      <NuxtLink to="/input">Data Testing</NuxtLink>
       <NuxtLink to="/characters">Characters</NuxtLink>
       <NuxtLink to="/personalities">Personalities</NuxtLink>
-      <NuxtLink to="/timeline">Timeline</NuxtLink>
     </div>
     <main>
       <NuxtPage />
