@@ -1,5 +1,5 @@
 import { defineEventHandler, readBody } from 'h3'
-import { getImageById, updateImage, deleteImage } from './service'
+import { getById, update, remove } from './service'
 
 export default defineEventHandler(async (event) => {
   const id = event.context.params?.id
@@ -8,11 +8,11 @@ export default defineEventHandler(async (event) => {
   }
 
   if (event.node.req.method === 'GET') {
-    return { success: true, image: await getImageById(id) }
+    return { success: true, data: await getById(id) }
   } else if (event.node.req.method === 'PUT') {
-    const updatedData = await readBody(event)
-    return { success: true, image: await updateImage(id, updatedData) }
+    const data = await readBody(event)
+    return { success: true, data: await update(id, data) }
   } else if (event.node.req.method === 'DELETE') {
-    return { success: true, deleted: await deleteImage(id) }
+    return { success: true, deleted: await remove(id) }
   }
 })

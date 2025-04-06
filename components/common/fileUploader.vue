@@ -81,7 +81,7 @@ const handleSubmit = async () => {
     .split(',')
     .map((tag) => tag.trim())
     .filter((tag) => tag.length > 0)
-  formData.append('tag', JSON.stringify(tagArray))
+  formData.append('tags', JSON.stringify(tagArray))
 
   try {
     const res = await fetch('/api/images', {
@@ -92,7 +92,7 @@ const handleSubmit = async () => {
     if (res.ok) {
       status.value = 'Upload successful!'
       // Emit event with the uploaded image data.
-      emit('upload-success', data.image)
+      emit('upload-success', data.data)
       // Reset fields.
       file.value = null
       name.value = ''

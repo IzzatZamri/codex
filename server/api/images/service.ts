@@ -11,25 +11,25 @@ if (!fs.existsSync(imgFolder)) {
 
 /**
  * Get all images, with optional search.
- * @param search (optional) - Search query to filter images by name, description, tag, or slug.
+ * @param search (optional) - Search query to filter images by name, description, tags, or slug.
  * @returns List of image records.
  */
-export async function getImages(search?: string): Promise<ImageRecord[]> {
+export async function get(search?: string): Promise<ImageRecord[]> {
   await db.read()
-  let images = db.data.images
+  let data = db.data.images
 
   if (search) {
     // You can use Fuse.js here for fuzzy search if desired.
-    images = images.filter(
-      (image) =>
-        image.name.includes(search) ||
-        image.description.includes(search) ||
-        image.slug.includes(search) ||
-        image.tag.some((tag) => tag.includes(search))
+    data = data.filter(
+      (x) =>
+        x.name.includes(search) ||
+        x.description.includes(search) ||
+        x.slug.includes(search) ||
+        x.tags.some((x) => x.includes(search))
     )
   }
 
-  return images
+  return data
 }
 
 /**
@@ -37,26 +37,26 @@ export async function getImages(search?: string): Promise<ImageRecord[]> {
  * @param id - Unique image ID.
  * @returns The image record if found, otherwise null.
  */
-export async function getImageById(id: string): Promise<ImageRecord | null> {
+export async function getById(id: string): Promise<ImageRecord | null> {
   await db.read()
-  return db.data.images.find((image) => image.id === id) || null
+  return db.data.images.find((x) => x.id === id) || null
 }
 
 /**
  * Create a new image record and save the uploaded file.
- * @param newImage - Image data (excluding id, createdAt, updatedAt).
+ * @param data - Image data (excluding id, createdAt, updatedAt).
  * @param fileBuffer - Buffer of the uploaded file.
  * @param originalName - Original filename.
  * @returns The created image record.
  */
-export async function createImage(
-  newImage: Omit<ImageRecord, 'id' | 'createdAt' | 'updatedAt'>,
+export async function create(
+  data: Omit<ImageRecord, 'id' | 'createdAt' | 'updatedAt'>,
   fileBuffer: Buffer,
-  originalName: string
+  originalName?: string
 ): Promise<ImageRecord> {
   await db.read()
 
-  if (!newImage.name) throw new Error('Image name is required')
+  if (!data.name) throw new Error('Image name is required')
 
   const id = randomUUID()
   const slug = id.slice(0, 8) // Simple slug from uuid
@@ -67,39 +67,39 @@ export async function createImage(
   const filePath = path.join(imgFolder, newFilename)
   fs.writeFileSync(filePath, fileBuffer)
 
-  const image: ImageRecord = {
+  const payload: ImageRecord = {
     id,
-    name: newImage.name,
-    description: newImage.description || '',
-    tag: newImage.tag || [],
+    name: data.name,
+    description: data.description || '',
+    tags: data.tags || [],
     slug,
     createdAt: now,
     updatedAt: now,
   }
 
-  db.data.images.push(image)
+  db.data.images.push(payload)
   await db.write()
 
-  return image
+  return payload
 }
 
 /**
  * Update an existing image record by ID.
  * @param id - Unique image ID.
- * @param updatedData - Fields to update.
+ * @param data - Fields to update.
  * @returns The updated image record.
  */
-export async function updateImage(
+export async function update(
   id: string,
-  updatedData: Partial<Omit<ImageRecord, 'id' | 'createdAt'>>
+  data: Partial<Omit<ImageRecord, 'id' | 'createdAt'>>
 ): Promise<ImageRecord> {
   await db.read()
-  const index = db.data.images.findIndex((image) => image.id === id)
+  const index = db.data.images.findIndex((x) => x.id === id)
   if (index === -1) throw new Error('Image not found')
 
   db.data.images[index] = {
     ...db.data.images[index],
-    ...updatedData,
+    ...data,
     updatedAt: new Date().toISOString(),
   }
   await db.write()
@@ -111,9 +111,9 @@ export async function updateImage(
  * @param id - Unique image ID.
  * @returns True if deleted, otherwise false.
  */
-export async function deleteImage(id: string): Promise<boolean> {
+export async function remove(id: string): Promise<boolean> {
   await db.read()
-  const index = db.data.images.findIndex((image) => image.id === id)
+  const index = db.data.images.findIndex((x) => x.id === id)
   if (index === -1) throw new Error('Image not found')
 
   // Optionally delete the file from the img folder.

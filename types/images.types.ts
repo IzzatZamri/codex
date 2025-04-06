@@ -2,7 +2,7 @@ export interface ImageRecord {
   id: string
   name: string
   description: string
-  tag: string[]
+  tags: string[]
   slug: string
   createdAt: string
   updatedAt: string
