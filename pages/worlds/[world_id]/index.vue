@@ -24,6 +24,18 @@
           >
         </div>
       </li>
+
+      <li>
+        <h2>Stories</h2>
+        <div>
+          <NuxtLink :to="`/worlds/${world.slug}/stories`">Story List</NuxtLink>
+        </div>
+        <div>
+          <NuxtLink :to="`/worlds/${world.slug}/stories/new`"
+            >New Story</NuxtLink
+          >
+        </div>
+      </li>
     </ul>
   </div>
 </template>

@@ -12,7 +12,7 @@ export default defineEventHandler(async (event) => {
         const data = await get(query)
         return {
           success: true,
-          data,
+          datas: data,
         }
       }
       case 'POST': {
