@@ -14,9 +14,25 @@
     <h1>Update A Story</h1>
 
     <IftaLabel>
-      <InputText id="username" v-model="value" variant="filled" />
-      <label for="username">Username</label>
+      <InputText id="title" size="small" v-model="manager.data.title" />
+      <label for="title">Title</label>
     </IftaLabel>
+
+    <IftaLabel>
+      <InputText id="slug" size="small" v-model="manager.data.slug" />
+      <label for="slug">Slug</label>
+    </IftaLabel>
+
+    <IftaLabel>
+      <InputText
+        id="description"
+        size="small"
+        v-model="manager.data.description"
+      />
+      <label for="description">Description</label>
+    </IftaLabel>
+
+    <Tags v-model="manager.data.tags" />
 
     <Button
       type="button"
@@ -26,6 +42,14 @@
       @click="updateStory()"
     />
 
+    <Button
+      type="button"
+      label="Delete"
+      size="small"
+      :loading="isLoading"
+      @click="deleteStory()"
+    />
+
     <pre>
       {{ manager.data }}
     </pre>
@@ -33,25 +57,47 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, reactive, onMounted } from 'vue'
-import { useRoute } from 'vue-router'
+import { ref, computed, reactive, onMounted } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import { StoryManager } from '~/models/Stories/StoryManager'
+import { useToast } from 'primevue/usetoast' // Provided by ToastService
 
+const toast = useToast()
 const route = useRoute()
+const router = useRouter()
 const worldId = route.params.world_id
 const storyId = route.params.story_id
-const value = ref('')
 const isLoading = ref<boolean>(false)
 
 // Create a reactive instance for manager
 const manager = reactive(new StoryManager())
+manager.data.title = 'Hello World'
 
 const updateStory = async () => {
   isLoading.value = true
   await manager.update().then(() => {
     isLoading.value = false
-    console.log(manager.data) // Check if data gets updated
+    toast.add({
+      severity: 'contrast',
+      summary: 'Updated',
+      detail: 'Story updated successfully!',
+      life: 3000,
+    })
   })
+}
+
+const deleteStory = async () => {
+  isLoading.value = true
+  await manager.delete().then(() => {
+    toast.add({
+      severity: 'contrast',
+      summary: 'Deleted',
+      detail: 'Story deleted successfully!',
+      life: 3000,
+    })
+    isLoading.value = false
+  })
+  router.push(`/worlds/${worldId}/stories`)
 }
 
 const home = ref({
@@ -59,15 +105,17 @@ const home = ref({
   route: '/',
 })
 
-const items = ref([
-  { label: 'World', route: '/worlds' },
-  { label: `${worldId}`, route: `/worlds/${worldId}` },
-  { label: 'Stories', route: `/worlds/${worldId}/stories` },
-  {
-    label: `${manager.data.title}`,
-    route: `/worlds/${worldId}/stories/${storyId}`,
-  },
-])
+const items = computed(() => {
+  return [
+    { label: 'World', route: '/worlds' },
+    { label: `${worldId}`, route: `/worlds/${worldId}` },
+    { label: 'Stories', route: `/worlds/${worldId}/stories` },
+    {
+      label: `${manager.data.title}`,
+      route: `/worlds/${worldId}/stories/${storyId}`,
+    },
+  ]
+})
 
 onMounted(() => {
   manager.load(storyId as string)

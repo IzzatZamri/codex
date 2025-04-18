@@ -1,30 +1,16 @@
-// ~/models/StoryManager.ts
-import { type Story } from '~/types/stories.types'
+// ~/models/TagManager.ts
+import { type Tag } from '~/types/tags.types'
 
-export class StoryManager {
+export class TagManager {
   // ─────────────────────────────────────────────────────────────
   // STATIC DEFAULTS
   // ─────────────────────────────────────────────────────────────
-  static DEFAULT_TITLE = 'My Title'
-  static TAG_LIST = ['A', 'B']
-
-  static getRandomTag() {
-    const index = Math.floor(Math.random() * StoryManager.TAG_LIST.length)
-    return StoryManager.TAG_LIST[index]
-  }
-
-  private static getEmptyData(): Story {
+  private static getEmptyData(): Tag {
     const now = new Date().toISOString()
     return {
       id: '',
       slug: '',
-      title: StoryManager.DEFAULT_TITLE,
-      description: '',
-      tags: [],
-      timeline: { start: '', end: '' },
-      content: '',
-      locationIds: [],
-      worldId: '',
+      name: '',
       createdAt: now,
       updatedAt: now,
     }
@@ -33,52 +19,37 @@ export class StoryManager {
   // ─────────────────────────────────────────────────────────────
   // INSTANCE DATA
   // ─────────────────────────────────────────────────────────────
-  data: Story
+  data: Tag
 
-  constructor(data: Story | null = null) {
-    this.data = data ?? StoryManager.getEmptyData()
+  constructor(data: Tag | null = null) {
+    this.data = data ?? TagManager.getEmptyData()
   }
 
   // ─────────────────────────────────────────────────────────────
   // DATA HANDLING
   // ─────────────────────────────────────────────────────────────
-  static async set(id?: string): Promise<StoryManager> {
-    const manager = new StoryManager()
+  static async set(id?: string): Promise<TagManager> {
+    const manager = new TagManager()
     if (id) await manager.load(id)
     return manager
   }
 
   async load(id: string) {
-    const res = await fetch(`/api/stories/${id}`, { method: 'GET' })
+    const res = await fetch(`/api/tags/${id}`, { method: 'GET' })
     if (!res.ok) throw new Error('Failed to load')
     const { success, data } = (await res.json()) as {
       success: boolean
-      data: Story
+      data: Tag
     }
     if (!success) throw new Error('Failed to load data')
     this.data = data
   }
 
   getPayload() {
-    const {
-      slug,
-      title,
-      content,
-      description,
-      tags,
-      timeline,
-      worldId,
-      locationIds,
-    } = this.data
+    const { name, slug } = this.data
     return {
+      name,
       slug,
-      title,
-      content,
-      description,
-      tags,
-      timeline,
-      worldId,
-      locationIds,
     }
   }
 
@@ -86,7 +57,7 @@ export class StoryManager {
   // CRUD OPERATIONS
   // ─────────────────────────────────────────────────────────────
   async create() {
-    const res = await fetch('/api/stories', {
+    const res = await fetch('/api/tags', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(this.getPayload()),
@@ -94,7 +65,7 @@ export class StoryManager {
     if (!res.ok) throw new Error('Failed to create')
     const { success, data } = (await res.json()) as {
       success: boolean
-      data: Story
+      data: Tag
     }
     if (!success) throw new Error('Failed to create data')
     this.data = data
@@ -102,7 +73,7 @@ export class StoryManager {
   }
 
   async update() {
-    const res = await fetch(`/api/stories/${this.data.id}`, {
+    const res = await fetch(`/api/tags/${this.data.id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(this.getPayload()),
@@ -110,7 +81,7 @@ export class StoryManager {
     if (!res.ok) throw new Error('Failed to update')
     const { success, data } = (await res.json()) as {
       success: boolean
-      data: Story
+      data: Tag
     }
     if (!success) throw new Error('Failed to update data')
     this.data = data
@@ -118,7 +89,7 @@ export class StoryManager {
   }
 
   async delete() {
-    const res = await fetch(`/api/stories/${this.data.id}`, {
+    const res = await fetch(`/api/tags/${this.data.id}`, {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' },
     })

@@ -1,25 +1,25 @@
-import type { Story } from '~/types/stories.types'
-import { StoryManager } from '~/models/Stories/StoryManager'
+import type { Character } from '~/types/characters.types'
+import { CharacterManager } from '~/models/Characters/CharacterManager'
 
-export class StoriesManager {
-  // Array of StoryManager instances
-  data: StoryManager[] = []
+export class CharactersManager {
+  // Array of CharacterManager instances
+  data: CharacterManager[] = []
 
-  constructor(initialData: Story[] = []) {
-    // Initialize the manager's data with StoryManager instances if any initial data is provided.
-    this.data = initialData.map((raw) => new StoryManager(raw))
+  constructor(initialData: Character[] = []) {
+    // Initialize the manager's data with CharacterManager instances if any initial data is provided.
+    this.data = initialData.map((raw) => new CharacterManager(raw))
   }
 
   /**
-   * Fetch all stories with optional filters.
+   * Fetch all characters with optional filters.
    * Supports simple pagination and search.
    *
    * @param filters - An object with optional keys: page, pageSize, search.
-   * @returns A promise that resolves with an array of StoryManager instances.
+   * @returns A promise that resolves with an array of CharacterManager instances.
    */
   async fetchAll(
     filters: { page?: number; pageSize?: number; search?: string } = {}
-  ): Promise<StoryManager[]> {
+  ): Promise<CharacterManager[]> {
     // Build the query string from filters.
     const query = new URLSearchParams()
     if (filters.page) query.append('page', filters.page.toString())
@@ -28,20 +28,20 @@ export class StoriesManager {
 
     // Compose the URL with query parameters if any.
     const url =
-      '/api/stories' + (query.toString() ? `?${query.toString()}` : '')
+      '/api/characters' + (query.toString() ? `?${query.toString()}` : '')
 
     const res = await fetch(url, { method: 'GET' })
     if (!res.ok) throw new Error('Failed to fetch data')
 
-    // Expecting standardized response: { success: true, data: Story[] }
+    // Expecting standardized response: { success: true, data: Character[] }
     const { success, data } = (await res.json()) as {
       success: boolean
-      data: Story[]
+      data: Character[]
     }
     if (!success) throw new Error('Failed to fetch data')
 
-    // Wrap each raw Story in a StoryManager instance.
-    this.data = data.map((rawData) => new StoryManager(rawData))
+    // Wrap each raw Character in a CharacterManager instance.
+    this.data = data.map((rawData) => new CharacterManager(rawData))
     return this.data
   }
 

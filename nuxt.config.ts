@@ -24,6 +24,7 @@ export default defineNuxtConfig({
     '~/assets/styles/main.scss',
     'primeicons/primeicons.css', // Include icon styles
   ],
+  plugins: ['~/plugins/primevue.plugins.ts'],
   compatibilityDate: '2025-03-09',
   router: {},
 })

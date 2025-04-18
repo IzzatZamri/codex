@@ -1,5 +1,7 @@
 <template>
   <div>
+    <!-- Toast component must be rendered somewhere -->
+    <Toast />
     <Splitter style="height: 100dvh" :gutterSize="1">
       <SplitterPanel ref="panel1" :size="15" :minSize="5">
         Left Side Section: status/ analytics
@@ -110,6 +112,7 @@ onUnmounted(() => {
 main {
   height: 100%;
   overflow-y: scroll;
+  padding-bottom: 200px;
 }
 .p-terminal.despair-terminal {
   font-family: 'Fira Code', 'Courier New', Courier, monospace;

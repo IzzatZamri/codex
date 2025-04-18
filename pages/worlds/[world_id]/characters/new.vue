@@ -1,95 +1,11 @@
 <template>
   <div>
     <h1>Create a Character</h1>
+    <CharacterForm v-model="characterId" />
     <div class="wrapper">
-      <div>
-        <h2>Main Detail</h2>
-        <div>
-          <label for="name">Name:</label>
-          <input type="text" id="name" placeholder="Enter character name" />
-        </div>
-        <div>
-          <label for="name">Full Name:</label>
-          <input type="text" id="fullname" placeholder="Enter character name" />
-        </div>
-        <div>
-          <label for="name">Nick Name:</label>
-          <input type="text" id="nickname" placeholder="Enter character name" />
-        </div>
-        <hr />
-        <div>
-          <label for="name">Birth Date:</label>
-          <input type="text" id="nickname" placeholder="Enter character name" />
-        </div>
-
-        <div>
-          <label for="name">Gender:</label>
-          <input type="text" id="nickname" placeholder="Enter character name" />
-        </div>
-
-        <div>
-          <label for="name">Race:</label>
-          <input type="text" id="nickname" placeholder="Enter character name" />
-        </div>
-        <div>
-          <label for="name">SubRace:</label>
-          <input type="text" id="nickname" placeholder="Enter character name" />
-        </div>
-      </div>
       <div class="other-detail">
         <h2>Persona</h2>
         <PersonalityDisplay v-model:personalityCode="personalityCode" />
-      </div>
-    </div>
-
-    <div>
-      <div>ariable stats</div>
-      <div>Strength</div>
-      <div>Endurance</div>
-      <div>Agility</div>
-      <div>Dexterity</div>
-      <div>Reflex</div>
-      <div>Perception</div>
-      <div>Magi</div>
-      <div>Health</div>
-      <hr />
-      <div>Invariable stats</div>
-      <div>Intelligence</div>
-      <div>Perseverance</div>
-      <div>Soul</div>
-      <div>Luck</div>
-      <div>Charm</div>
-    </div>
-
-    <div>
-      <div>Enlightenment</div>
-    </div>
-
-    <div>
-      <div>Inate Abilities</div>
-      <div>Gift</div>
-      <div>Arts</div>
-    </div>
-
-    <div>
-      <div>Status</div>
-      <div>Traits</div>
-      <div>Attribute</div>
-    </div>
-
-    <div>
-      <div>Domain</div>
-    </div>
-
-    <div>
-      <div v-if="personality.alignment.name.length > 7">
-        {{ personality.alignment.name }}
-      </div>
-      <div v-if="personality.enneagram.name.length > 7">
-        {{ personality.enneagram.name }}
-      </div>
-      <div v-if="personality.mbti.name.length > 7">
-        {{ personality.mbti.name }}
       </div>
     </div>
 
@@ -108,16 +24,17 @@
 import { ref, computed } from 'vue'
 import ImageUploader from '~/components/common/fileUploader.vue'
 import { parsePersonalityString } from '~/composables/usePersonalityParser'
-
+import CharacterForm from '~/components/ui/characters/index.vue'
 const uploadedImage = ref(null)
 const handleUploadSuccess = (imageData: any) => {
   uploadedImage.value = imageData
   console.log('Image uploaded:', imageData)
 }
 
-import PersonalityDisplay from '@/components/ui/personality.vue' // Adjust path as needed
+import PersonalityDisplay from '~/components/ui/personality.vue' // Adjust path as needed
 
 // Create a reactive variable for the selected Enneagram type (as a string)
+const characterId = ref('')
 const personalityCode = ref('')
 const personality = computed(() => {
   return parsePersonalityString(personalityCode.value)

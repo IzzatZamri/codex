@@ -3,9 +3,12 @@
     <svg :width="size" :height="size" :viewBox="`0 0 ${size} ${size}`">
       <!-- Define arc paths in <defs> so text can follow the curves -->
       <defs>
-        <template v-for="(segment, index) in arcSegments">
-          <path :id="segment.id" :d="segment.path" fill="none" />
-        </template>
+        <path
+          v-for="(segment, index) in arcSegments"
+          :id="segment.id"
+          :d="segment.path"
+          fill="none"
+        />
       </defs>
 
       <!-- Outer segmented arcs -->

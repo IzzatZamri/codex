@@ -1,17 +1,20 @@
+import { type Tag } from '~/types/tags.types'
+
 export interface Character {
   id: string // uuid v4
+  slug: string
 
   basicInfo: BasicInfo
   attributes: Attributes
   appearance: Appearance
-  personality: Personality
   preferences: Preferences
   socialInfo?: SocialInfo
+  personality: Personality
+
+  relationshipIds: string[]
+  historyIds: string[] // Key events in the character's past
 
   worldId?: string // Reference to world data
-  relationships: string[] // List of other characters this character has relationships with
-  history: string[] // Key events in the character's past
-
   createdAt: string
   updatedAt: string
 }
@@ -21,13 +24,13 @@ export interface BasicInfo {
   fullName?: string
   nickName?: string
   aliases?: string[]
+  description?: string // stored as markdown
   gender?: string
   dateOfBirth?: string // will use custom date format later
-  birthPlace?: string // will use id later when place is implemented
-  race?: string // will add race id later
-  subrace?: string[] // will add subrace id later
-  description?: string // stored as markdown
-  tags?: string[]
+  birthPlaceId: string
+  raceId: string
+  subraceIds: string[]
+  tagIds: string[]
 }
 
 export interface Attributes {
@@ -59,9 +62,9 @@ export interface SocialInfo {
   titles?: string[]
   occupations?: string[]
   status?: string[]
-  affiliations?: string[] // List of groups or organizations the character is affiliated with
-  factions?: string[] // Update to specify group affiliations (e.g., factions, guilds)
-  domains?: string[] // List of areas or specialties the character holds domain over
+  affiliationIds?: string[] // List of groups or organizations the character is affiliated with
+  factionIds?: string[] // Update to specify group affiliations (e.g., factions, guilds)
+  domainIds?: string[] // List of areas or specialties the character holds domain over
   commandments?: string[] // Set of rules or laws the character adheres to
 }
 
