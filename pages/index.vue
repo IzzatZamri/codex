@@ -1,6 +1,11 @@
 <template>
   <div>
     <h1>Despair</h1>
+
+    <CustomTimeline />
+
+    <CustomCalendar />
+
     <div>
       personality <br />
       timeline <br />
@@ -44,4 +49,7 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import CustomCalendar from '~/components/common/calendar/index.vue'
+import CustomTimeline from '~/components/common/calendar/timeline.vue'
+</script>
