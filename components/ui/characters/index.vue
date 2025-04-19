@@ -81,7 +81,6 @@
                 v-model="manager.data.basicInfo.gender"
                 :options="['Male', 'Female']"
                 placeholder="Select gender"
-                style="width: 100%"
                 inputId="gender"
               />
               <label for="gender">Gender</label>
@@ -92,15 +91,35 @@
                 size="small"
                 inputId="dob"
               />
+              <label for="dob">Place Of Birth</label>
+            </IftaLabel>
+
+            <IftaLabel>
+              <InputText
+                v-model="manager.data.basicInfo.birthPlaceId"
+                size="small"
+                inputId="dob"
+              />
               <label for="dob">Date Of Birth</label>
             </IftaLabel>
 
-            <div>Birth Place: {{ manager.data.basicInfo.birthPlaceId }}</div>
-            <div>Race: {{ manager.data.basicInfo.raceId }}</div>
-            <div>
-              Subrace:
-              {{ manager.data.basicInfo.subraceIds?.join(', ') || 'N/A' }}
-            </div>
+            <IftaLabel>
+              <InputText
+                v-model="manager.data.basicInfo.raceId"
+                size="small"
+                inputId="dob"
+              />
+              <label for="dob">Race</label>
+            </IftaLabel>
+
+            <IftaLabel>
+              <InputText
+                v-model="manager.data.basicInfo.subraceIds"
+                size="small"
+                inputId="dob"
+              />
+              <label for="dob">Subrace</label>
+            </IftaLabel>
           </AccordionContent>
         </AccordionPanel>
 
@@ -111,13 +130,25 @@
             <section class="flex-row">
               <div class="half-width">
                 <h2>Appearance</h2>
-                <div>
-                  Theme Color: {{ manager.data.appearance.themeColor || 'N/A' }}
-                </div>
+
+                <IftaLabel>
+                  <InputText
+                    v-model="manager.data.appearance.themeColor"
+                    size="small"
+                    inputId="dob"
+                  />
+                  <label for="dob">Theme Color</label>
+                </IftaLabel>
+
                 <h3>Summary</h3>
-                <p class="preformatted-text">
-                  {{ manager.data.appearance.summary || 'N/A' }}
-                </p>
+                <IftaLabel>
+                  <TextArea
+                    v-model="manager.data.appearance.summary"
+                    size="small"
+                    inputId="dob"
+                  />
+                  <label for="dob">Summary</label>
+                </IftaLabel>
               </div>
 
               <div class="half-width">
@@ -132,30 +163,71 @@
             </div>
           </div> -->
                 <hr />
-                <div>
-                  General: {{ manager.data.personality.generalPersonality }}
-                </div>
-                <div>
-                  Core Motivation: {{ manager.data.personality.coreMotivation }}
-                </div>
+
+                <IftaLabel>
+                  <InputText
+                    v-model="manager.data.personality.generalPersonality"
+                    size="small"
+                    inputId="dob"
+                  />
+                  <label for="dob">General</label>
+                </IftaLabel>
+
+                <IftaLabel>
+                  <InputText
+                    v-model="manager.data.personality.coreMotivation"
+                    size="small"
+                    inputId="dob"
+                  />
+                  <label for="dob">Core Motivation</label>
+                </IftaLabel>
+
                 <h3>Preferences</h3>
-                <div>
-                  Favourite Color: {{ manager.data.preferences.favoriteColor }}
-                </div>
-                <div>
-                  Likes:
-                  {{ manager.data.preferences.likes?.join(', ') || 'N/A' }}
-                </div>
-                <div>
-                  Dislikes:
-                  {{ manager.data.preferences.dislikes?.join(', ') || 'N/A' }}
-                </div>
-                <div>
-                  Fears:
-                  {{ manager.data.preferences.fears?.join(', ') || 'N/A' }}
-                </div>
-                <h3>Notes</h3>
-                <div>{{ manager.data.personality.notes || 'N/A' }}</div>
+
+                <IftaLabel>
+                  <InputText
+                    v-model="manager.data.preferences.favoriteColor"
+                    size="small"
+                    inputId="dob"
+                  />
+                  <label for="dob">Favourite Color</label>
+                </IftaLabel>
+
+                <IftaLabel>
+                  <InputText
+                    v-model="manager.data.preferences.likes"
+                    size="small"
+                    inputId="dob"
+                  />
+                  <label for="dob">Likes</label>
+                </IftaLabel>
+
+                <IftaLabel>
+                  <InputText
+                    v-model="manager.data.preferences.dislikes"
+                    size="small"
+                    inputId="dob"
+                  />
+                  <label for="dob">Dislikes</label>
+                </IftaLabel>
+
+                <IftaLabel>
+                  <InputText
+                    v-model="manager.data.preferences.fears"
+                    size="small"
+                    inputId="dob"
+                  />
+                  <label for="dob">Fears</label>
+                </IftaLabel>
+
+                <IftaLabel>
+                  <TextArea
+                    v-model="manager.data.personality.notes"
+                    size="small"
+                    inputId="dob"
+                  />
+                  <label for="dob">Notes</label>
+                </IftaLabel>
               </div>
             </section>
           </AccordionContent>
@@ -165,38 +237,68 @@
         <AccordionPanel value="2">
           <AccordionHeader>Social Information</AccordionHeader>
           <AccordionContent>
-            <div>
-              Title:
-              {{ manager.data.socialInfo?.titles?.join(', ') || 'N/A' }}
-            </div>
-            <div>
-              Occupation:
-              {{ manager.data.socialInfo?.occupations?.join(', ') || 'N/A' }}
-            </div>
-            <div>
-              Status:
-              {{ manager.data.socialInfo?.status?.join(', ') || 'N/A' }}
-            </div>
-            <div>
-              Affiliations:
-              {{ manager.data.socialInfo?.affiliationIds?.join(', ') || 'N/A' }}
-            </div>
-            <div>
-              Factions:
-              {{ manager.data.socialInfo?.factionIds?.join(', ') || 'N/A' }}
-            </div>
+            <IftaLabel>
+              <InputText
+                v-model="manager.data.socialInfo.titles"
+                size="small"
+                inputId="dob"
+              />
+              <label for="dob">Titles</label>
+            </IftaLabel>
 
-            <div>
-              <h3>Domains</h3>
-              <div>{{ manager.data.socialInfo?.domainIds?.join(', ') }}</div>
-            </div>
+            <IftaLabel>
+              <InputText
+                v-model="manager.data.socialInfo.occupations"
+                size="small"
+                inputId="dob"
+              />
+              <label for="dob">Occupation</label>
+            </IftaLabel>
 
-            <div>
-              <h3>Commandments</h3>
-              <div>
-                {{ manager.data.socialInfo?.commandments?.join(', ') }}
-              </div>
-            </div>
+            <IftaLabel>
+              <InputText
+                v-model="manager.data.socialInfo.status"
+                size="small"
+                inputId="dob"
+              />
+              <label for="dob">Status</label>
+            </IftaLabel>
+
+            <IftaLabel>
+              <InputText
+                v-model="manager.data.socialInfo.affiliationIds"
+                size="small"
+                inputId="dob"
+              />
+              <label for="dob">Affiliations</label>
+            </IftaLabel>
+
+            <IftaLabel>
+              <InputText
+                v-model="manager.data.socialInfo.factionIds"
+                size="small"
+                inputId="dob"
+              />
+              <label for="dob">Factions</label>
+            </IftaLabel>
+
+            <IftaLabel>
+              <InputText
+                v-model="manager.data.socialInfo.domainIds"
+                size="small"
+                inputId="dob"
+              />
+              <label for="dob">Domains</label>
+            </IftaLabel>
+
+            <IftaLabel>
+              <InputText
+                v-model="manager.data.socialInfo.commandments"
+                size="small"
+                inputId="dob"
+              />
+              <label for="dob">Commandments</label>
+            </IftaLabel>
           </AccordionContent>
         </AccordionPanel>
 
@@ -261,18 +363,27 @@
           <AccordionContent>
             <div class="half-width">
               <h2>Relationships</h2>
-              <div
-                v-for="relation in manager.data.relationshipIds"
-                :key="relation"
-              >
-                {{ relation }}
-              </div>
+
+              <IftaLabel>
+                <InputText
+                  v-model="manager.data.relationshipIds"
+                  size="small"
+                  inputId="dob"
+                />
+                <label for="dob">Relationships</label>
+              </IftaLabel>
             </div>
             <div class="half-width">
               <h2>Story/History</h2>
-              <div v-for="entry in manager.data.historyIds" :key="entry">
-                {{ entry }}
-              </div>
+
+              <IftaLabel>
+                <InputText
+                  v-model="manager.data.historyIds"
+                  size="small"
+                  inputId="dob"
+                />
+                <label for="dob">Story/History</label>
+              </IftaLabel>
             </div>
           </AccordionContent>
         </AccordionPanel>
