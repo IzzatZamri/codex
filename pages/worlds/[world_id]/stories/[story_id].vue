@@ -13,26 +13,33 @@
 
     <h1>Update A Story</h1>
 
-    <IftaLabel>
-      <InputText id="title" size="small" v-model="manager.data.title" />
-      <label for="title">Title</label>
-    </IftaLabel>
+    <div style="display: flex; gap: 30px">
+      <IftaLabel>
+        <InputText id="title" size="small" v-model="manager.data.title" />
+        <label for="title">Title</label>
+      </IftaLabel>
+
+      <IftaLabel>
+        <InputText id="slug" size="small" v-model="manager.data.slug" />
+        <label for="slug">Slug</label>
+      </IftaLabel>
+
+      <IftaLabel>
+        <InputText
+          id="description"
+          size="small"
+          v-model="manager.data.description"
+        />
+        <label for="description">Description</label>
+      </IftaLabel>
+
+      <Tags v-model="manager.data.tags" />
+    </div>
 
     <IftaLabel>
-      <InputText id="slug" size="small" v-model="manager.data.slug" />
-      <label for="slug">Slug</label>
+      <Textarea id="content" size="small" v-model="manager.data.content" />
+      <label for="content">Content</label>
     </IftaLabel>
-
-    <IftaLabel>
-      <InputText
-        id="description"
-        size="small"
-        v-model="manager.data.description"
-      />
-      <label for="description">Description</label>
-    </IftaLabel>
-
-    <Tags v-model="manager.data.tags" />
 
     <Button
       type="button"
@@ -71,7 +78,6 @@ const isLoading = ref<boolean>(false)
 
 // Create a reactive instance for manager
 const manager = reactive(new StoryManager())
-manager.data.title = 'Hello World'
 
 const updateStory = async () => {
   isLoading.value = true
@@ -117,8 +123,9 @@ const items = computed(() => {
   ]
 })
 
-onMounted(() => {
-  manager.load(storyId as string)
+onMounted(async () => {
+  await manager.load(storyId as string)
+  manager.data.worldId = worldId as string
 })
 </script>
 
