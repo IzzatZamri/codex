@@ -1,5 +1,7 @@
 # Nuxt 3 Minimal Starter
 
+This project is a minimal starter template for Nuxt 3, designed to help you get up and running quickly with a new Nuxt 3 application.
+
 Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
 ## Setup
@@ -20,6 +22,8 @@ yarn install
 bun install
 ```
 
+> **Note:** Ensure you have Node.js installed on your machine. You can download it from [nodejs.org](https://nodejs.org/).
+
 ## Development Server
 
 Start the development server on `http://localhost:3000`:
@@ -36,6 +40,24 @@ yarn dev
 
 # bun
 bun run dev
+```
+
+## Electron
+
+To run the Electron application, use the following command:
+
+```bash
+# npm
+npm run electron
+
+# pnpm
+pnpm run electron
+
+# yarn
+yarn electron
+
+# bun
+bun run electron
 ```
 
 ## Production

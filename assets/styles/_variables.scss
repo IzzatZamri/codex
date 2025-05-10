@@ -1,0 +1,105 @@
+:root {
+  // Typical Color Stops on a Color Wheel
+  // Hue Angle	Color
+  // 0°	Red
+  // 30°	Orange
+  // 60°	Yellow
+  // 90°	Lime
+  // 120°	Green
+  // 180°	Cyan
+  // 240°	Blue
+  // 270°	Indigo
+  // 300°	Magenta
+  // 330°	Pink/Crimson
+  // 360°/0°	Red again
+
+  // Gray Scale
+  --color-white: #ffffff;
+  --color-gray-100: #e6e6e6;
+  --color-gray-200: #cccccc;
+  --color-gray-300: #b3b3b3;
+  --color-gray-400: #999999;
+  --color-gray-500: #808080;
+  --color-gray-600: #666666;
+  --color-gray-700: #4d4d4d;
+  --color-gray-800: #333333;
+  --color-gray-900: #1a1a1a;
+  --color-black: #000000;
+
+  // Purple Variants
+  --color-purple: #9b59b6;
+  --color-purple-dark: #8e44ad;
+  --color-purple-light: #af7ac5;
+  --color-purple-soft: #d2b4de;
+  --color-purple-neon: #bf00ff;
+
+  // Green Variants
+  --color-green: #27ae60;
+  --color-green-dark: #1e8449;
+  --color-green-light: #2ecc71;
+  --color-green-soft: #a9dfbf;
+  --color-green-neon: #39ff14;
+
+  // Blue Variants
+  --color-blue: #3498db;
+  --color-blue-dark: #2980b9;
+  --color-blue-light: #5dade2;
+  --color-blue-soft: #aed6f1;
+  --color-blue-neon: #1f51ff;
+
+  // Navy Variants
+  --color-navy: #001f3f;
+  --color-navy-dark: #001430;
+  --color-navy-light: #003366;
+  --color-navy-soft: #6699cc;
+  --color-navy-neon: #00ffff;
+
+  // Yellow Variants
+  --color-yellow: #f1c40f;
+  --color-yellow-dark: #f39c12;
+  --color-yellow-light: #f7dc6f;
+  --color-yellow-soft: #fcf3cf;
+  --color-yellow-neon: #ffff33;
+
+  // Red Variants
+  --color-red: #e74c3c;
+  --color-red-dark: #c0392b;
+  --color-red-light: #ec7063;
+  --color-red-soft: #fadbd8;
+  --color-red-neon: #ff073a;
+
+  // Orange Variants
+  --color-orange: #e67e22;
+  --color-orange-dark: #d35400;
+  --color-orange-light: #f39c12;
+  --color-orange-soft: #ffe5b4;
+  --color-orange-neon: #ff7518;
+
+  // Sage Variants
+  --color-sage: #a3b18a;
+  --color-sage-dark: #7f8a66;
+  --color-sage-light: #c1d1a0;
+  --color-sage-soft: #e1e9d8;
+  --color-sage-neon: #aaff00;
+
+  // Turquoise Variants
+  --color-turquoise: #1abc9c;
+  --color-turquoise-dark: #16a085;
+  --color-turquoise-light: #48c9b0;
+  --color-turquoise-soft: #a2ded0;
+  --color-turquoise-neon: #00ffef;
+
+  // Brown Variants
+  --color-brown: #8b4513;
+  --color-brown-dark: #5d341a;
+  --color-brown-light: #a0522d;
+  --color-brown-soft: #c4a484;
+  --color-brown-neon: #ff6700;
+
+  // Pink Variants
+  --color-pink: #ff69b4;
+  --color-pink-dark: #ff1493;
+  --color-pink-light: #ff85c1;
+  --color-pink-soft: #ffc0cb;
+  --color-pink-neon: #ff6ec7;
+}
