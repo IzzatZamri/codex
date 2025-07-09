@@ -4,42 +4,20 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "nuxt build",
     "dev": "nuxt dev",
+    "build": "nuxt build",
     "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare",
-    "electron:build": "tsc -p electron/tsconfig.json && electron electron-dist/main.js",
-    "electron:dev": "tsc -p electron/tsconfig.json && electron electron-dist/main.js"
+    "preview": "nuxt preview"
   },
   "dependencies": {
-    "@nuxt/types": "^2.18.1",
-    "@nuxtjs/composition-api": "^0.34.0",
-    "@observablehq/plot": "^0.6.17",
-    "@pinia/nuxt": "^0.10.1",
-    "@primeuix/themes": "^1.0.1",
-    "d3": "^7.9.0",
-    "dotenv": "^16.4.7",
+    "@nuxtjs/sitemap": "7.4.3",
+    "@pinia/nuxt": "^0.11.1",
     "fuse.js": "^7.1.0",
-    "lowdb": "^7.0.1",
-    "markdown-it": "^14.1.0",
-    "nuxt": "^3.16.0",
-    "pinia": "^3.0.1",
-    "primeicons": "^7.0.0",
-    "primevue": "^4.3.3",
-    "uuid": "^11.1.0",
-    "vue": "^3.4.19",
-    "vue-router": "^4.2.5"
+    "nuxt": "^3.17.6",
+    "pinia": "3.0.3"
   },
   "devDependencies": {
-    "@primevue/nuxt-module": "^4.3.3",
-    "@types/markdown-it": "^14.1.2",
-    "@types/node": "^22.13.10",
-    "@types/uuid": "^10.0.0",
-    "electron": "^35.0.0",
-    "electron-builder": "^25.1.8",
-    "sass": "^1.86.3",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.1.6"
-  }
+    "sass": "^1.89.2"
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }

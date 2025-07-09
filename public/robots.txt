@@ -1,0 +1,6 @@
+# public/robots.txt
+
+User-agent: *
+Allow: /
+
+Sitemap: https://izzat-codex.netlify.app/sitemap.xml
