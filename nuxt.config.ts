@@ -25,8 +25,8 @@ export default defineNuxtConfig({
     // Provide the generated routes to the sitemap
     urls: [
       '/',
-      '/timelines'
-      // ...characterRoutes,
+      '/timelines',
+      ...characterRoutes
       // ...raceRoutes,
     ],
     defaults: {
@@ -40,7 +40,7 @@ export default defineNuxtConfig({
   // App metadata
   app: {
     head: {
-      titleTemplate: '%s | Codex',
+      titleTemplate: 'Eternum | Codex',
       meta: [
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         { name: 'description', content: 'Codex: A worldbuilding wiki' },
@@ -63,8 +63,8 @@ export default defineNuxtConfig({
     prerender: {
       routes: [
         '/',
-        '/timelines'
-        // ...characterRoutes
+        '/timelines',
+        ...characterRoutes
         // ...raceRoutes,
       ]
     }
