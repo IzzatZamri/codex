@@ -5,11 +5,11 @@
  * Defining it here makes it easily importable elsewhere.
  */
 export interface Character {
-  id: string;
-  name: string;
-  title: string;
-  race: string;
-  description: string;
+  id: string
+  name: string
+  title: string
+  race: string
+  description: string
   // Add any other properties you have for a character
 }
 
@@ -19,18 +19,18 @@ export interface Character {
  */
 export const characters: Character[] = [
   {
-    id: "zigfrid-eternum-dahlia",
-    name: "Zigfrid Eternum Dahlia",
-    title: "The First Bloom",
-    race: "Celestial",
+    id: 'zigfrid-eternum-dahlia',
+    name: 'Zigfrid Eternum Dahlia',
+    title: 'The First Bloom',
+    race: 'Celestial',
     description:
-      "An ancient being of immense power, Zigfrid is one of the original architects of the Eternum cosmos.",
+      'An ancient being of immense power, Zigfrid is one of the original architects of the Eternum cosmos.'
   },
   {
-    id: "another-character",
-    name: "Another Character",
-    title: "The Wanderer",
-    race: "Human",
-    description: "A mysterious traveler with a forgotten past.",
-  },
-];
+    id: 'another-character',
+    name: 'Another Character',
+    title: 'The Wanderer',
+    race: 'Human',
+    description: 'A mysterious traveler with a forgotten past.'
+  }
+]

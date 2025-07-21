@@ -17,20 +17,21 @@ export default defineNuxtConfig({
   // The `site` module is the single source of truth for your URL
   site: {
     url: 'https://izzat-codex.netlify.app',
-    trailingSlash: false,
+    trailingSlash: false
   },
 
   sitemap: {
     exclude: ['/404'],
     // Provide the generated routes to the sitemap
     urls: [
-      ...characterRoutes,
+      '/'
+      // ...characterRoutes,
       // ...raceRoutes,
     ],
     defaults: {
       changefreq: 'monthly',
-      priority: 0.5,
-    },
+      priority: 0.5
+    }
   },
 
   css: ['~/assets/styles/main.scss'],
@@ -43,28 +44,29 @@ export default defineNuxtConfig({
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         { name: 'description', content: 'Codex: A worldbuilding wiki' },
         { name: 'robots', content: 'index, follow' },
-        { name: 'author', content: 'Izzat Zamri' },
+        { name: 'author', content: 'Izzat Zamri' }
       ],
-      link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
-    },
+      link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    }
   },
 
   runtimeConfig: {
     public: {
       // This makes your site configuration available on the client-side
-      siteAuthor: 'Izzat Zamri',
-    },
+      siteAuthor: 'Izzat Zamri'
+    }
   },
 
   // Prerender the routes for your static site
   nitro: {
     prerender: {
       routes: [
-        ...characterRoutes,
+        '/'
+        // ...characterRoutes
         // ...raceRoutes,
-      ],
-    },
+      ]
+    }
   },
 
-  compatibilityDate: '2025-07-10',
+  compatibilityDate: '2025-07-10'
 })
