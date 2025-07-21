@@ -24,7 +24,8 @@ export default defineNuxtConfig({
     exclude: ['/404'],
     // Provide the generated routes to the sitemap
     urls: [
-      '/'
+      '/',
+      '/timelines'
       // ...characterRoutes,
       // ...raceRoutes,
     ],
@@ -61,7 +62,8 @@ export default defineNuxtConfig({
   nitro: {
     prerender: {
       routes: [
-        '/'
+        '/',
+        '/timelines'
         // ...characterRoutes
         // ...raceRoutes,
       ]
