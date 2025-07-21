@@ -1,7 +1,7 @@
 # netlify.toml
 [build]
   command = "npm run generate"
-  publish = ".output/public"
+  publish = "dist"
 
 # This rule correctly handles 404 pages for a static site
 [[redirects]]
