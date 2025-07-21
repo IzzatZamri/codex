@@ -13,7 +13,7 @@ const characterRoutes = characters.map(
 
 export default defineNuxtConfig({
   modules: ['@pinia/nuxt', '@nuxtjs/sitemap'],
-
+  ssr: true,
   // The `site` module is the single source of truth for your URL
   site: {
     url: 'https://izzat-codex.netlify.app',
